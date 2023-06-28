@@ -1,6 +1,8 @@
 import os
 from datetime import datetime
+
 from sqlalchemy import create_engine, Column, Integer, String, DateTime, Float, ForeignKey, Boolean, event
+from sqlalchemy.types import Date, Time
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.orm import Session, relationship, backref
 import time
@@ -48,14 +50,15 @@ class PlanCurveInst(Base):
     id = Column(Integer, primary_key=True)
     enable = Column(Boolean, default=False)
     curve_id = Column(Integer)
-    start_date = Column(DateTime, default=datetime.now().date())
-    end_date = Column(DateTime, default=datetime.now().date())
+    start_date = Column(Date)
+    end_date = Column(Date)
 
     def insert_data(self, db: Session):
         db.add(self)
         db.commit()
         db.refresh(self)
         return self
+
 
 # # 创建触发器
 # @event.listens_for(PlanCurveInst.enable, 'set')
@@ -70,8 +73,8 @@ class PlanCurveDetail(Base):
     __tablename__ = 'plan_curve_detail'
 
     curve_id = Column(Integer, primary_key=True)
-    start_time = Column(DateTime, default=datetime.now().date())
-    end_time = Column(DateTime, default=datetime.now().date())
+    start_time = Column(Time)
+    end_time = Column(Time)
     power = Column(Float, default=0.0)
 
     def insert_data(self, db: Session):

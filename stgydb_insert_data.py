@@ -17,7 +17,19 @@ session = Session()
 tmpl1 = create_stgydb.PlanCurveTmpl(
     name='曲线模板1',
 )
-session.bulk_save_objects([tmpl1])
+tmpl2 = create_stgydb.PlanCurveTmpl(
+    name='曲线模板2',
+)
+tmpl3 = create_stgydb.PlanCurveTmpl(
+    name='曲线模板3',
+)
+tmpl4 = create_stgydb.PlanCurveTmpl(
+    name='曲线模板4',
+)
+tmpl5 = create_stgydb.PlanCurveTmpl(
+    name='曲线模板5',
+)
+session.bulk_save_objects([tmpl1, tmpl2, tmpl3, tmpl4, tmpl5])
 
 # 向 曲线实例 数据表插入数据
 inst1 = create_stgydb.PlanCurveInst(
@@ -55,32 +67,32 @@ session.bulk_save_objects([inst1, inst2, inst3, inst4, inst5])
 # 向 曲线详情 数据表插入数据
 detail1 = create_stgydb.PlanCurveDetail(
     curve_id=1,
-    start_time=datetime.strptime('00:00', '%H:%M'),
-    end_time=datetime.strptime('00:00', '%H:%M'),
+    start_time=datetime.strptime('00:00', '%H:%M').time(),
+    end_time=datetime.strptime('23:59', '%H:%M').time(),
     power=111,
 )
 detail2 = create_stgydb.PlanCurveDetail(
     curve_id=2,
-    start_time=datetime.strptime('00:00', '%H:%M'),
-    end_time=datetime.strptime('00:00', '%H:%M'),
+    start_time=datetime.strptime('00:00', '%H:%M').time(),
+    end_time=datetime.strptime('23:59', '%H:%M').time(),
     power=222,
 )
 detail3 = create_stgydb.PlanCurveDetail(
     curve_id=3,
-    start_time=datetime.strptime('00:00', '%H:%M'),
-    end_time=datetime.strptime('00:00', '%H:%M'),
+    start_time=datetime.strptime('00:00', '%H:%M').time(),
+    end_time=datetime.strptime('23:59', '%H:%M').time(),
     power=333,
 )
 detail4 = create_stgydb.PlanCurveDetail(
     curve_id=4,
-    start_time=datetime.strptime('00:00', '%H:%M'),
-    end_time=datetime.strptime('00:00', '%H:%M'),
+    start_time=datetime.strptime('00:00', '%H:%M').time(),
+    end_time=datetime.strptime('23:59', '%H:%M').time(),
     power=444,
 )
 detail5 = create_stgydb.PlanCurveDetail(
     curve_id=5,
-    start_time=datetime.strptime('00:00', '%H:%M'),
-    end_time=datetime.strptime('00:00', '%H:%M'),
+    start_time=datetime.strptime('00:00', '%H:%M').time(),
+    end_time=datetime.strptime('23:59', '%H:%M').time(),
     power=555,
 )
 session.bulk_save_objects([detail1, detail2, detail3, detail4, detail5])
